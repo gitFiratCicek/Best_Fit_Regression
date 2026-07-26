@@ -1,0 +1,6 @@
+numpy==2.4.4
+pandas == 3.0.3
+pypalettes == 0.2.1
+sklearn == 1.9.0
+matplotlib == 3.10.9
+sys == 3.12.3
