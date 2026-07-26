@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
-import File_Loader as file
 import matplotlib.pyplot as plt
 import pypalettes as lett
+import tkinter as tk
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge,LinearRegression, Lasso
 
@@ -122,7 +122,7 @@ class Best_Fit:
             - rid (ridge regression)
 
         test_size: size of test part 
-        
+
         tts: pass a dictionary containing all optional
         args you would like to pass to train_test_split()
 
@@ -142,9 +142,10 @@ class Best_Fit:
 
         X = self.data.values[:, :self.y_col_in]
         Y = self.data.values[:, self.y_col_in]
-
-        X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
-
+        try:
+            X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
+        except ValueError as v:
+            print("You entered a wrong value. Please enter value like 1/3.")
         match type:
             case 'lin':
                 model = LinearRegression(**LR)
