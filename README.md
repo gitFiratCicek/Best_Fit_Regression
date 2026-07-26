@@ -6,5 +6,5 @@ The resulting intercept, coefficient and r^2 score will be output. After that th
 API Reference for scikit-learn functions: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
 
 # How to run the Script
-In order to run the script you need to run the prompt.py file.
+You need to install the packages in the requirements.txt file in order to run the program. 
 
