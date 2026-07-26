@@ -8,7 +8,6 @@ class prompt:
     def __init__(self):
         self.best_fit = BF.Best_Fit
 
-
     def show_menu(self):
         '''
         Menu for the user.
@@ -23,7 +22,6 @@ class prompt:
         print("1. lin")
         print("2. las")
         print("3. rid")
-
 
     def load_pr(self):
         '''
@@ -130,7 +128,6 @@ def main():
     pr = prompt()
     pr.load_pr()
     pr.regression_pr()
-
 
 if __name__=='__main__':
     main()
