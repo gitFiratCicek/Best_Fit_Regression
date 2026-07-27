@@ -73,7 +73,7 @@ class Best_Fit:
 
         beta0 = self.incept
         beta1 = self.coef
-        interval = np.linspace(start, end, end)
+        interval = np.linspace(start, end)
         plt.title(f'{self.incept=} and {self.coef=}')
         plt.xlabel(xcol)
         plt.ylabel(ycol)

@@ -114,12 +114,13 @@ class prompt:
         while True:
 
             try:
-                start = int(input("\nPlease enter start of range:"))
-                end = int(input("Please enter end of range: "))
+                print("Plot")
+                start = float(input("\nPlease enter start of range:"))
+                end = float(input("Please enter end of range: "))
                 self.best_fit.plot_xy(inp_x, inp_y, start, end)
                 break
             except ValueError:
-                print("You need to enter an integer like 1!")
+                print("You need to enter a number!")
 
 
                             
