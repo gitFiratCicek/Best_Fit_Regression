@@ -47,7 +47,7 @@ class prompt:
         test_size, additional parameters and the x-range of the resulting plot.
         '''
         while True:
-            inp_x = input("Please enter name of x column:\n")
+            inp_x = input("\nPlease enter name of x column:\n")
             inp_y = input("Please enter name of output column:\n")
 
             if inp_y in self.best_fit.data.columns \
@@ -58,6 +58,8 @@ class prompt:
                 print("The column is not present! Try again!\n")
 
         while True:
+            print("\n")
+            print("Type of Regression Model")
             self.show_reg_type()
             regression_type_in = input("Please enter the type of regression model:\n")
             type_no = int()
@@ -87,7 +89,7 @@ class prompt:
                         " n like .2 without additional space\n")
                     break
         while True:
-            print("optional arguments example {'fit_intercept': False}\n")
+            print("\noptional arguments example {'fit_intercept': False}\n")
             regression_optional = input("Please enter optional arguments:" \
             "for the regression as a dict string\n")
             if len(regression_optional) == 0:
@@ -110,21 +112,16 @@ class prompt:
                         " like {'fit_intercept': False}")
                     break
         while True:
-            print("Plotting: Enter column name of x and y:\n")
-            plot_x = input("Please enter column name x: \n")
-            plot_y = input("Please enter column name y: \n")
-            if plot_x in self.best_fit.data.columns \
-                and plot_y in self.best_fit.data.columns:
-                try:
-                    start = int(input("Please enter start of range:"))
-                    end = int(input("Please enter end of range: "))
-                    self.best_fit.plot_xy(plot_x, plot_y, start, end)
-                    break
-                except ValueError:
-                    print("You need to enter an integer like 1!")
 
-            else:
-                print("These columns are not present")
+            try:
+                start = int(input("\nPlease enter start of range:"))
+                end = int(input("Please enter end of range: "))
+                self.best_fit.plot_xy(inp_x, inp_y, start, end)
+                break
+            except ValueError:
+                print("You need to enter an integer like 1!")
+
+
                             
 def main():
     pr = prompt()
