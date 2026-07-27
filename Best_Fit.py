@@ -15,6 +15,9 @@ class Best_Fit:
 
     def __init__(self, data: pd.DataFrame):
         self.data = data
+        self.x_col = str()
+        self.x_col_in = int()
+        self.x = self.data.values[:, self.x_col_in]
         self.y_col = str()
         self.y_col_in = int()
         self.y = self.data.values[:, self.y_col_in]
@@ -28,16 +31,19 @@ class Best_Fit:
             the intercept is {self.incept} and \
             the score is r^2 {self.score:.3f}'
 
-    def classify(self, y_col):
+    def classify(self, x_col, y_col):
         '''
-        Use this first to classify your data.
+        Use this first to determine the columns your data.
         This function will make sure that all the columns
-        in your dataset will be mapped accordingly.
+        in your dataset will be mapped to x and y.
 
+        x_col: name of x column
         y_col: name of output column
         '''
         try:
+            self.x_col = x_col
             self.y_col = y_col
+            self.x_col_in = self.data.columns.get_loc(self.x_col)
             self.y_col_in = self.data.columns.get_loc(self.y_col)
             self.unique_vals = self.data[str(y_col)].unique()
         except KeyError as k:

@@ -13,15 +13,15 @@ class prompt:
         Menu for the user.
         '''
         print("--------Main Menu--------")
-        print("Press 1 to exit")
+        print("Press 1 to exit\n")
 
     def show_reg_type(self):
         '''
         Possible types of Regression Models.
         '''
-        print("1. lin")
+        print("\n1. lin")
         print("2. las")
-        print("3. rid")
+        print("3. rid\n")
 
     def load_pr(self):
         '''
@@ -30,7 +30,7 @@ class prompt:
         '''
         while True:
             self.show_menu()
-            inp = input("Please enter path to CSV File:")
+            inp = input("Please enter path to CSV File:\n")
 
             match inp:
                 case '1':
@@ -47,17 +47,19 @@ class prompt:
         test_size, additional parameters and the x-range of the resulting plot.
         '''
         while True:
-            inp = input("Please enter name of output column:")
+            inp_x = input("Please enter name of x column:\n")
+            inp_y = input("Please enter name of output column:\n")
 
-            if inp in self.best_fit.data.columns:
-                self.best_fit.classify(inp)
+            if inp_y in self.best_fit.data.columns \
+                and inp_x in self.best_fit.data.columns:
+                self.best_fit.classify(inp_x, inp_y)
                 break
             else:
-                print("The column is not present!")
+                print("The column is not present! Try again!\n")
 
         while True:
             self.show_reg_type()
-            regression_type_in = input("Please enter the type of regression model:")
+            regression_type_in = input("Please enter the type of regression model:\n")
             type_no = int()
             match regression_type_in:
                 case 'lin':
@@ -73,21 +75,21 @@ class prompt:
                     type_no = 2
                     break
                 case _:
-                    print('not valid')
+                    print('not valid!')
         while True:
-            regression_type_in = input("Please enter the test size (ex. .333):")
+            regression_type_in = input("Please enter the test size (ex. .333):\n")
             match regression_type_in:
                 case default:
                     try:
                         test_size = float(default)
                     except ValueError:
                         print("You need to type in a floating point" \
-                        " n like .2 without additional space")
+                        " n like .2 without additional space\n")
                     break
         while True:
-            print("optional arguments example {'fit_intercept': False}")
+            print("optional arguments example {'fit_intercept': False}\n")
             regression_optional = input("Please enter optional arguments:" \
-            "for the regression as a dict string")
+            "for the regression as a dict string\n")
             if len(regression_optional) == 0:
                 print(self.best_fit.operate(type, test_size))
                 break
@@ -108,9 +110,9 @@ class prompt:
                         " like {'fit_intercept': False}")
                     break
         while True:
-            print("Plotting: Enter column name of x and y:")
-            plot_x = input("Please enter column name x: ")
-            plot_y = input("Please enter column name y: ")
+            print("Plotting: Enter column name of x and y:\n")
+            plot_x = input("Please enter column name x: \n")
+            plot_y = input("Please enter column name y: \n")
             if plot_x in self.best_fit.data.columns \
                 and plot_y in self.best_fit.data.columns:
                 try:
