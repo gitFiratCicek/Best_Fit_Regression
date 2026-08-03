@@ -9,7 +9,6 @@ class Best_Fit:
     '''
     Class for fitting a linear model and solving the
     linear least squares problem.
-
     Class also includes function to plot the results.
     '''
 
@@ -27,19 +26,19 @@ class Best_Fit:
         self.score = float()
 
     def __str__(self):
-        return f'The coefs are {self.coef} and \
+        return f'The coefficient is {self.coef} and \
             the intercept is {self.incept} and \
             the score is r^2 {self.score:.3f}'
 
     def classify(self, x_col, y_col):
-        '''
+        """
         Use this first to determine the columns your data.
         This function will make sure that all the columns
         in your dataset will be mapped to x and y.
 
         x_col: name of x column
         y_col: name of output column
-        '''
+        """
         try:
             self.x_col = x_col
             self.y_col = y_col
