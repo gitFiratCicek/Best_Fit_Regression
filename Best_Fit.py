@@ -26,9 +26,9 @@ class Best_Fit:
         self.score = float()
 
     def __str__(self):
-        return f'The coefficient is {self.coef} and \
-            the intercept is {self.incept} and \
-            the score is r^2 {self.score:.3f}'
+        return f'The coefficient is {self.coef.item(0):.3f} and '\
+            f'the intercept is {self.incept:.3f} and '\
+            f'the score is r^2 {self.score:.3f}'
 
     def classify(self, x_col, y_col):
         """

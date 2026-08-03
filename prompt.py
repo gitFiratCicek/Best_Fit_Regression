@@ -85,12 +85,12 @@ class prompt:
                     try:
                         test_size = float(default)
                     except ValueError:
-                        print("You need to type in a floating point" \
+                        print("You need to type in a floating point" 
                         " n like .2 without additional space\n")
                     break
         while True:
             print("\noptional arguments example {'fit_intercept': False}\n")
-            regression_optional = input("Please enter optional arguments:" \
+            regression_optional = input("Please enter optional arguments:"
             "for the regression as a dict string\n")
             if len(regression_optional) == 0:
                 print(self.best_fit.operate(type, test_size))
@@ -108,7 +108,7 @@ class prompt:
                             self.best_fit.operate(type, test_size, Las=dic)
 
                     except ValueError:
-                        print("You need to type in a dictionary" \
+                        print("You need to type in a dictionary"
                         " like {'fit_intercept': False}")
                     break
         while True:
@@ -121,8 +121,6 @@ class prompt:
                 break
             except ValueError:
                 print("You need to enter a number!")
-
-
                             
 def main():
     pr = prompt()
