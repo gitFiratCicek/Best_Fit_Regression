@@ -78,16 +78,16 @@ class prompt:
                     break
                 case _:
                     print('not valid!')
+                    
         while True:
             regression_type_in = input("Please enter the test size (ex. .333):\n")
-            match regression_type_in:
-                case default:
-                    try:
-                        test_size = float(default)
-                    except ValueError:
-                        print("You need to type in a floating point" 
-                        " n like .2 without additional space\n")
-                    break
+            try:
+                test_size = float(regression_type_in)
+                break
+            except ValueError:
+                print("You need to type in a floating point" 
+                " n like .2 without additional space\n")
+            
         while True:
             print("\noptional arguments example {'fit_intercept': False}\n")
             regression_optional = input("Please enter optional arguments:"

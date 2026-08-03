@@ -9,7 +9,6 @@ class File_Loader:
     def loadFile(self):
         try:
             df = pd.read_csv(self.name, delimiter=',')
-
             return df
         except FileNotFoundError as f:
             print(f'The following file was not found: {f.filename}. Please try a valid path/file.')

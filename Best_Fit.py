@@ -71,7 +71,7 @@ class Best_Fit:
         scat_args = scat_args or dict()
 
         beta0 = self.incept
-        beta1 = self.coef
+        beta1 = self.coef.item(0)
         interval = np.linspace(start, end)
         plt.title(f'{self.incept=} and {self.coef=}')
         plt.xlabel(xcol)
@@ -146,26 +146,33 @@ class Best_Fit:
 
         X = self.data.values[:, :self.y_col_in]
         Y = self.data.values[:, self.y_col_in]
-        try:
-            X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
-        except ValueError as v:
-            print("You entered a wrong value. Please enter value like 1/3.")
+        while True:
+            try:
+                X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
+                break
+            except ValueError as v:
+                print("You entered a wrong value. Please enter value like 1/3.")
         match type:
             case 'lin':
                 model = LinearRegression(**LR)
                 
             case 'las':
-                try:
-                    val = float(input('Input penalty value(λ):'))
-                except ValueError:
-                    print("Not a number")
+                while True:
+                    try:
+                        val = float(input('Input penalty value(λ):'))
+                        break
+                    except ValueError:
+                        print("Not a float number.")
                 model = Lasso(alpha=val, **Las)
             case 'rid':
-                try:
-                    val = float(input('Input penalty value(λ):'))
-                except ValueError:
-                    print("Not a number")
-                model = Ridge(alpha=val, **RR)           
+                while True:
+                    try:
+                        val = float(input('Input penalty value(λ):'))
+                        break
+                    except ValueError:
+                        print("Not a float number.")
+                model = Ridge(alpha=val, **RR)
+                          
             case _:
                 print("not valid type")
 
