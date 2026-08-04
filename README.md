@@ -1,6 +1,6 @@
 # Fit simple Regression Model
 The goal of this project is to find the Best Fit for a simple Regression Model (one predictor at the moment). The user sees a prompt and has to enter the path for a .csv file that contains some data.
-Then the user can choose the type of Regression Model (Linear/Ridge/Lasso). Afterwards the user is asked to provide the size of the test part and additional parameters for the regression functions in the form of a string that represents a dictionary. The resulting intercept, coefficient and r^2 score are shown in the console. The users are then asked to type a string representing a dictionary for the matplotlib plot() and scatter() functions. After that the users are prompted to enter a start and end range for the result plot. 
+Then the user can choose the type of Regression Model (Linear/Ridge/Lasso). Afterwards the user is asked to provide the size of the test part and additional parameters for the regression functions in the form of a string that represents a dictionary. The resulting intercept, coefficient and $r^2$ score are shown in the console. The users are then asked to type a string representing a dictionary for the matplotlib plot() and scatter() functions. After that the users are prompted to enter a start and end range for the result plot. 
 
 API Reference for scikit-learn functions: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
 
