@@ -33,7 +33,7 @@ class Best_Fit:
     def classify(self, x_col, y_col):
         """
         Use this first to determine the columns your data.
-        This function will make sure that all the columns
+        This function will make sure that specific columns
         in your dataset will be mapped to x and y.
 
         x_col: name of x column
@@ -52,7 +52,7 @@ class Best_Fit:
         '''
         Plot linear function with coefficient and y-intercept
         which was determined by operate() function.
-        The original data will also be output as a scatter plot.
+        The original data will also be output as a scatter plot alongside the linear function.
 
         xcol: name of x column
 
@@ -80,38 +80,6 @@ class Best_Fit:
         plt.plot(interval, beta0 + interval*beta1, **plot_args)
         plt.show()
 
-    def plot_xy_rel(self, xplt_col, yplt_col, pallete, scat_args=None):
-        '''
-        Plot the feature inputs as x and y scatter plot.
-        And color every data point according to 
-        the coressponding output color palette. 
-
-        xplt_col: column name for x
-        yplt_col: column name for y
-        palette: name of palette (reference https://y-sunflower.github.io/pypalettes/)
-
-        scat_args: pass a dict to specify optional
-        args you would like to pass to plt.scatter()
-        '''
-        scat_args = scat_args or dict()
-
-        try:
-            category_mapping = {category: idx for idx, category in enumerate(self.unique_vals)}
-            cmap = lett.load_cmap( \
-                    pallete,  # Name of the palette
-                    keep_first_n=len(category_mapping)-1,  # Number of colors to keep
-                    )
-
-            plt.scatter(self.data[xplt_col].to_numpy(), self.data[yplt_col].to_numpy(), c=self.data[self.y_col].to_numpy(), cmap=cmap, **scat_args)
-            plt.colorbar()
-            plt.xlabel(xplt_col)
-            plt.ylabel(yplt_col)
-            plt.show()
-        except KeyError as k:
-            print(f'The following name is not a real column: {k}')
-        except ValueError as v:
-            print(f"Y values are outside the range of the color palette. {v}")
-    
     def operate(self, type, test_size, tts=None, LR=None, RR=None, Las= None):
         '''
         Before using this function it is best to use classify() first.
