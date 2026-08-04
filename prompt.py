@@ -80,47 +80,80 @@ class prompt:
                     print('not valid!')
                     
         while True:
-            regression_type_in = input("Please enter the test size (ex. .333):\n")
+            test_size_input = input("Please enter the test size (ex. .333):\n")
             try:
-                test_size = float(regression_type_in)
-                break
+                test_size = float(test_size_input)
             except ValueError:
                 print("You need to type in a floating point" 
                 " n like .2 without additional space\n")
+            if test_size < 1 and test_size > 0:
+                break
+            else:
+                print("Test Size can only be between 0 and 1.")
             
         while True:
             print("\noptional arguments example {'fit_intercept': False}\n")
-            regression_optional = input("Please enter optional arguments:"
-            "for the regression as a dict string\n")
+            regression_optional = input("Please enter optional arguments "
+            "for the regression as a dictionary string:\n")
             if len(regression_optional) == 0:
                 print(self.best_fit.operate(type, test_size))
                 break
+            else:
+                try:
+                    dic = ast.literal_eval(regression_optional)
+                    if type_no == 0:
+                        self.best_fit.operate(type, test_size, LR=dic)
+                        break
+                    elif type_no == 1:
+                        self.best_fit.operate(type, test_size, RR=dic)
+                        break
+                    elif type_no == 2:
+                        self.best_fit.operate(type, test_size, Las=dic)
+                        break
 
-            match regression_optional:
-                case default:
-                    try:
-                        dic = ast.literal_eval(regression_optional)
-                        if type_no == 0:
-                            self.best_fit.operate(type, test_size, LR=dic)
-                        elif type_no == 1:
-                            self.best_fit.operate(type, test_size, RR=dic)
-                        elif type_no == 2:
-                            self.best_fit.operate(type, test_size, Las=dic)
+                except ValueError:
+                    print("You need to type in a dictionary"
+                    " like {'fit_intercept': False}")
 
-                    except ValueError:
-                        print("You need to type in a dictionary"
-                        " like {'fit_intercept': False}")
-                    break
         while True:
-
+            print("--------Plot--------")
+            print("\noptional arguments example {'color': 'green'}\n")
+            regression_plot_optional = input("Please enter optional arguments"
+            " for the regression plot as a dictionary string:\n")
+            if len(regression_plot_optional) == 0:
+                dic_linear_plot = {}
+                break
+            else:
+                try:
+                    dic_linear_plot = ast.literal_eval(regression_plot_optional)
+                    break
+                except ValueError:
+                    print("You need to type in a dictionary"
+                    " like {'color': 'green'}")
+        while True:
+            print("--------Plot--------")
+            print("\noptional arguments example {'color': 'orange'}\n")
+            scatter_plot_optional = input("Please enter optional arguments"
+            " for the scatter data plot as a dictionary string:\n")
+            if len(scatter_plot_optional) == 0:
+                dic_scatter_plot = {}
+                break
+            else:
+                try:
+                    dic_scatter_plot = ast.literal_eval(scatter_plot_optional)
+                    break
+                except ValueError:
+                    print("You need to type in a dictionary"
+                    " like {'color': 'green'}")
+        
+        while True:
             try:
-                print("Plot")
                 start = float(input("\nPlease enter start of range:"))
                 end = float(input("Please enter end of range: "))
-                self.best_fit.plot_xy(inp_x, inp_y, start, end)
+                self.best_fit.plot_xy(inp_x, inp_y, start, end, plot_args=dic_linear_plot, scat_args=dic_scatter_plot)
                 break
             except ValueError:
-                print("You need to enter a number!")
+                print("You need to enter a number for the range which can be converted to float.")
                             
 def main():
     pr = prompt()

@@ -114,13 +114,11 @@ class Best_Fit:
 
         X = self.data.values[:, :self.y_col_in]
         Y = self.data.values[:, self.y_col_in]
-        while True:
-            try:
-                X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
-                break
-            except ValueError as v:
-                print("You entered a wrong value. Please enter value like 1/3.")
+        
+        X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=test_size, **tts)
+
         match type:
+            
             case 'lin':
                 model = LinearRegression(**LR)
                 
@@ -132,6 +130,7 @@ class Best_Fit:
                     except ValueError:
                         print("Not a float number.")
                 model = Lasso(alpha=val, **Las)
+
             case 'rid':
                 while True:
                     try:
