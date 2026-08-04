@@ -129,10 +129,10 @@ class prompt:
                     break
                 except ValueError:
                     print("You need to type in a dictionary"
-                    " like {'color': 'green'}")
+                    " like {'c': 'green'}")
         while True:
             print("--------Plot--------")
-            print("\noptional arguments example {'color': 'orange'}\n")
+            print("\noptional arguments example {'c': 'orange'}\n")
             scatter_plot_optional = input("Please enter optional arguments"
             " for the scatter data plot as a dictionary string:\n")
             if len(scatter_plot_optional) == 0:
